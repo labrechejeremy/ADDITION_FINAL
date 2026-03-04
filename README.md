@@ -1,5 +1,5 @@
-﻿<p align="center">
-  <img src="web/portal/assets/logo-transparent.png" alt="Addition Logo" width="250">
+<p align="center">
+  <img src="docs/assets/logo-transparent.png" alt="Addition Logo" width="250">
 </p>
 
 <h1 align="center">Addition (ADD)</h1>
@@ -14,10 +14,10 @@
 
 ---
 
-## 💎 The Post-Quantum Revolution
+## ?? The Post-Quantum Revolution
 Addition is a next-generation Layer 1 blockchain engineered for the post-quantum era. While legacy networks remain vulnerable to future quantum computing threats, Addition employs **ML-DSA-87 (Module-Lattice-Based Digital Signature Algorithm)** in strict mode to ensure absolute cryptographic longevity.
 
-### 📊 Competitive Analysis: Addition vs. The Market
+### ?? Competitive Analysis: Addition vs. The Market
 
 | Feature | Addition (ADD) | Bitcoin (BTC) | Ethereum (ETH) |
 | :--- | :--- | :--- | :--- |
@@ -30,25 +30,25 @@ Addition is a next-generation Layer 1 blockchain engineered for the post-quantum
 
 ---
 
-## 🛠 Core Technical Architecture
+## ?? Core Technical Architecture
 
-### 🛡️ Hardened Security
+### ??? Hardened Security
 - **ML-DSA-87 Strict Mode:** Future-proof signatures protecting against Shor's algorithm.
 - **Signed P2P Transport:** Every node handshake is signed to prevent replay attacks and relay deduplication.
 - **Rate-Limited Gossip:** Advanced transport hardening against DDoS and network congestion.
 
-### 🕵️ Privacy & Compliance
+### ??? Privacy & Compliance
 - **Privacy Pool Primitives:** Native shielding for assets and smart contract state.
 - **Confidential Assets:** Issue tokens and NFTs with built-in privacy controls.
 
-### ⚡ Professional Frontend Suite
+### ? Professional Frontend Suite
 - **Wallet Pro:** Advanced Python-based dashboard for power users, miners, and stakers.
 - **Cross-Platform Mobile:** Flutter-powered app for iOS, Android, and Windows.
 - **Portal Bridge:** Real-time metrics and a sleek web entry point.
 
 ---
 
-## 🚀 Quick Start
+## ?? Quick Start
 
 ### 1. Build from Source
 ```bash
@@ -71,7 +71,7 @@ launch_daemon.bat
 
 ---
 
-## 🌐 Global Deployment
+## ?? Global Deployment
 Addition is built for the modern cloud:
 - **Scalable Infrastructure:** Docker-ready via `deploy/github-docker`.
 - **Global Delivery:** Optimized for Cloudflare Workers via `deploy/cloudflare`.
