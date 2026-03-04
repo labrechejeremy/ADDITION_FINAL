@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+﻿name: Build and Publish Docker Image
 
 on:
   push:
@@ -25,6 +25,8 @@ jobs:
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
+          labels: |
+            org.opencontainers.image.source=https://github.com/ADDAddition/ADDITION
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -32,7 +34,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          labels: |
+            org.opencontainers.image.source=https://github.com/ADDAddition/ADDITION
           context: .
           file: deploy/github-docker/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/additiond:latest
+          tags: ghcr.io/addaddition/additiond:latest
+
