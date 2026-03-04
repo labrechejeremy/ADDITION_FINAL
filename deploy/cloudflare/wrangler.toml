@@ -1,0 +1,11 @@
+name = "addition-portal"
+main = "worker.js"
+compatibility_date = "2026-03-03"
+route = "xa1.ai/*"
+
+[assets]
+directory = "../../web/portal"
+binding = "ASSETS"
+
+[vars]
+PORTAL_API_BASE = "https://api.xa1.ai"
