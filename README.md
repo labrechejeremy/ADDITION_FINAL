@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/logo-transparent.png" alt="Addition Logo" width="280">
+  <img src="https://raw.githubusercontent.com/ADDAddition/ADDITION/main/docs/assets/logo-transparent.png" alt="Addition Logo" width="250">
 </p>
 
 <h1 align="center">/ADD PROTOCOL (ADDITION)</h1>
@@ -15,17 +15,16 @@
 ---
 
 ## The Evolutionary Shift
-Addition (/ADD) is a next-generation Layer 1 blockchain engineered to eliminate the vulnerabilities of legacy networks. While Ethereum and Solana face the imminent threat of quantum computing and high centralisation, Addition provides a **mathematically secure, hyper-scarce, and fully decentralised** financial foundation.
+Addition (/ADD) is a next-generation Layer 1 blockchain engineered to eliminate the vulnerabilities of legacy networks. While Ethereum and Solana face the imminent threat of quantum computing, Addition provides a **mathematically secure, hyper-scarce, and fully decentralised** financial foundation.
 
 ### Technical Superiority: /ADD vs. The Giants
 
-| Feature | **Addition (/ADD)** | **Solana (SOL)** | **Ethereum (ETH)** |
+| Feature | Addition (/ADD) | Solana (SOL) | Ethereum (ETH) |
 | :--- | :--- | :--- | :--- |
 | **Quantum Security** | **ML-DSA-87 (NIST Lvl 5)** | Vulnerable | Vulnerable |
 | **TX Experience** | **INSTANT (via Mempool-Sync)** | Variable | Slow / Expensive |
 | **Max Supply** | **50,000,000 (Fixed)** | ~580M | Infinite |
 | **Privacy** | **Native Privacy Pools** | Public Only | L2 Required |
-| **Compatibility** | **MetaMask & ALL EVM Chains** | Isolated | Native |
 
 ---
 
@@ -37,18 +36,14 @@ Despite a robust 60-second block confirmation time for deep security, Addition u
 - **Efficiency**: Merchants don't wait for block mining to verify transaction legitimacy.
 
 <p align="center">
-  <img src="docs/assets/add-privacy.png" alt="Addition Privacy" width="600">
+  <img src="https://raw.githubusercontent.com/ADDAddition/ADDITION/main/docs/assets/privacy_new.png" alt="Addition Privacy" width="450">
 </p>
 
 ### Universal Interoperability (EVM Bridge)
-Built with the future in mind, Addition is fully compatible with the existing Web3 ecosystem.
-- **MetaMask Ready**: Connect your favorite wallet via the integrated bridge.
-- **Cross-Chain Fluidity**: Seamlessly bridge assets between Addition and Ethereum-based networks.
+Built with the future in mind, Addition is fully compatible with the existing Web3 ecosystem. Connect your favorite wallet via the integrated bridge.
 
 ### Smart Contract Engine Pro
-Addition features a high-performance, quantum-secure execution environment. 
-- **Deterministic Execution**: Highly predictable gas costs.
-- **Advanced Logic**: Native support for complex DeFi protocols, NFTs, and DAO governance.
+Addition features a high-performance, quantum-secure execution environment with deterministic gas costs and native support for complex DeFi and DAO governance.
 
 ---
 
@@ -71,16 +66,16 @@ cmake -S . -B build && cmake --build build
 
 ## Governance & Legal
 Addition is backed by a **legally registered Canadian Federal Entity**. We combine the decentralization of "The Code is Law" with the trust of real-world institutional accountability.
-**[View Official Federal Registry Details](https://ised-isde.canada.ca/cc/lgcy/fdrlCrpDtls.html?p=0&corpId=17632274&crpNm=addison&crpNmbr=&bsNmbr=&cProv=&cStatus=&cAct=)**
+[View Official Federal Registry Details](https://ised-isde.canada.ca/cc/lgcy/fdrlCrpDtls.html?p=0&corpId=17632274&crpNm=addison&crpNmbr=&bsNmbr=&cProv=&cStatus=&cAct=)
 
 ---
 
 <div align="center">
   <h3>Network Showcase</h3>
-  <video src="https://raw.githubusercontent.com/ADDAddition/ADDITION/main/docs/assets/promo.mp4" width="100%" controls autoplay muted loop></video>
-  <br><br>
+  <video src="https://github.com/ADDAddition/ADDITION/raw/main/docs/assets/promo.mp4" width="100%"></video>
+  <br>
   <h3>Chain Visual Demo</h3>
-  <video src="https://raw.githubusercontent.com/ADDAddition/ADDITION/main/docs/assets/masterpiece_chain.mp4" width="100%" controls autoplay muted loop></video>
+  <video src="https://github.com/ADDAddition/ADDITION/raw/main/docs/assets/masterpiece_chain.mp4" width="100%"></video>
 </div>
 
 <p align="center">
