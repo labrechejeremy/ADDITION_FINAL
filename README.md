@@ -3,62 +3,80 @@
 </p>
 
 <h1 align="center">/ADD PROTOCOL (ADDITION)</h1>
-<p align="center"><b>The Final Financial Layer for the Machine Economy</b></p>
+<p align="center"><b>The Post-Quantum Sovereign Layer 1 with Instant Finality Experience</b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Security-NIST_Level_5_Post--Quantum-red?style=for-the-badge" alt="Security">
+  <img src="https://img.shields.io/badge/Performance-Instant_Balance_Sync-blue?style=for-the-badge" alt="Performance">
   <img src="https://img.shields.io/badge/Supply-50M_Hard_Cap-gold?style=for-the-badge" alt="Supply">
-  <img src="https://img.shields.io/badge/Privacy-Enforced_Pools-blueviolet?style=for-the-badge" alt="Privacy">
-  <img src="https://img.shields.io/badge/Status-Mainnet_v4.1_Live-brightgreen?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Compat-MetaMask_&_EVM_Bridge-orange?style=for-the-badge" alt="Interoperability">
 </p>
 
 ---
 
-## ?? The Sovereign Blockchain Evolution
-Addition (/ADD) is a Layer 1 blockchain engineered to solve the "Triple Crisis" of current networks: **Quantum Vulnerability, Infinite Inflation, and Total Surveillance.** 
+## ?? The Sovereign Evolution
+Addition (/ADD) is a next-generation Layer 1 blockchain engineered to eliminate the vulnerabilities of legacy networks. While Ethereum and Solana face the imminent threat of quantum computing and high centralisation, Addition provides a **mathematically secure, hyper-scarce, and fully decentralised** financial foundation.
 
-While legacy networks like Ethereum and Solana rely on aging ECDSA/Ed25519 signatures, Addition is built on **ML-DSA-87 (Module-Lattice-Based Digital Signature Algorithm)** in strict mode, ensuring absolute cryptographic immunity for the next 50 years.
+### ?? The Technical Edge: /ADD vs. The Giants
 
-### ?? Competitive Superiority: The Hard Truth
-
-| Feature | **Addition (/ADD)** | **Solana (SOL)** | **Ethereum (ETH)** | **Bitcoin (BTC)** |
-| :--- | :--- | :--- | :--- | :--- |
-| **Quantum Resistance** | **YES (NIST Level 5)** | NO (Vulnerable) | NO (Vulnerable) | NO (Vulnerable) |
-| **Max Supply** | **50,000,000 (Fixed)** | ~580M (Inflation) | Infinite (Variable) | 21,000,000 |
-| **Privacy Engine** | **Native Privacy Pools** | Public Only | Public Only | Public Only |
-| **Consensus** | **Hybrid PoW + Stake** | Centralized PoS | Proof of Stake | Proof of Work |
-| **Institutional Trust** | **Registered Fed Entity** | Private Foundation | Non-Profit Org | None |
-
----
-
-## ??? Core Infrastructure Pillars
-
-### 1. Post-Quantum Security (NIST Level 5)
-Addition is the first production-ready blockchain to enforce ML-DSA-87 signatures. This prevents "Harvest Now, Decrypt Later" attacks, securing assets against future quantum computers that will compromise 99% of existing digital wallets.
-
-### 2. Hyper-Scarcity Tokenomics
-With a fixed supply of **50 million /ADD**, our protocol is 10x scarcer than Solana. 
-*   **Genesis Sale Price**: $0.60 USD
-*   **Genesis Allocation**: Only 10,000 /ADD available for public acquisition.
-*   **Economic Goal**: Maximum value retention for early network participants.
-
-### 3. Integrated Privacy Pools
-Unlike transparent chains where your wealth is public, Addition integrates **Native Privacy Pools** (src/privacy.cpp). High-net-worth individuals and institutions can transact with mathematical anonymity without leaving the L1.
+| Feature | **Addition (/ADD)** | **Solana (SOL)** | **Ethereum (ETH)** |
+| :--- | :--- | :--- | :--- |
+| **Quantum Security** | **ML-DSA-87 (NIST Lvl 5)** | Vulnerable (Ed25519) | Vulnerable (ECDSA) |
+| **TX Experience** | **INSTANT (via Mempool-Sync)** | Variable | Slow / Expensive |
+| **Max Supply** | **50,000,000 (Fixed)** | ~580M (Inflationary) | Infinite (Variable) |
+| **Privacy** | **Native Privacy Pools** | Public Only | L2 Required |
+| **Compatibility** | **MetaMask & ALL EVM Chains** | Isolated | Native |
+| **Decentralization** | **PC-Grade Node (Hybrid)** | Data-Center Required | High Entry Barrier |
 
 ---
 
-## ?? Global Ecosystem
+## ?? Core Protocol Features
 
-*   **Official Gateway**: [XA1.AI](https://xa1.ai) | [BNKS.AI](https://bnks.ai) | [PEKIN.AI](https://pekin.ai)
-*   **Acquisition**: Direct Fiat Gateway via Stripe/PayPal integrated on all portals.
-*   **Developer Suite**: Token Factory Pro for instant deployment of PQ-secure assets.
-*   **Interoperability**: Native EVM Bridge for seamless liquidity flow.
+### ? Instant-Balance Technology
+Despite a robust 60-second block confirmation time for deep security, Addition utilizes **Lattice-Mempool Synchronization**. 
+*   **Zero-Wait Experience**: Users see and can interact with incoming funds **instantly** via the getbalance_instant RPC protocol. 
+*   **Efficiency**: Merchants and users don't wait for block mining to verify transaction legitimacy.
+
+### ?? Universal Interoperability (EVM Bridge)
+Built with the future in mind, Addition is fully compatible with the existing Web3 ecosystem.
+*   **MetaMask Ready**: Connect your favorite wallet via the integrated evm_rpc_bridge.
+*   **Cross-Chain Fluidity**: Seamlessly bridge assets between Addition and Ethereum-based networks.
+
+### ?? Smart Contract Engine Pro
+Addition features a high-performance, quantum-secure execution environment (src/contract_engine.cpp). 
+*   **Deterministic Execution**: Highly predictable gas costs.
+*   **Advanced Logic**: Native support for complex DeFi protocols, NFTs, and DAO governance.
+
+### ??? Hardened Privacy & Decentralization
+*   **Native Privacy Pools**: Shielded transactions are built into the core protocol, not an afterthought.
+*   **Signed P2P Transport**: Every node handshake is cryptographically verified to prevent eclipse and DDoS attacks.
+*   **True Decentralization**: Designed to run on standard hardware, ensuring no single entity can control or censor the network.
+
+---
+
+## ?? Technical Ecosystem
+
+- **Wallet Pro**: Advanced Python dashboard for power users and miners.
+- **Mobile Suite**: Flutter-powered apps for iOS, Android, and Windows.
+- **Token Factory**: Deploy custom post-quantum tokens in seconds with full policy control (Tax, Burn, Whale-limits).
+
+### Quick Start
+`ash
+# 1. Build the Node
+cmake -S . -B build && cmake --build build
+
+# 2. Launch Infrastructure
+./build/additiond.exe --mainnet
+
+# 3. Access the Network
+Open https://xa1.ai or https://bnks.ai
+`
 
 ---
 
 ## ?? Governance & Legal
-Addition is backed by a **legally registered Canadian Federal Entity**. We combine the decentralization of "Code is Law" with the trust of real-world legal accountability.
-[View Federal Registry Details](https://ised-isde.canada.ca/cc/lgcy/fdrlCrpDtls.html?p=0&corpId=17632274&crpNm=addison&crpNmbr=&bsNmbr=&cProv=&cStatus=&cAct=)
+Addition is backed by a **legally registered Canadian Federal Entity**. We bridge the gap between "Code is Law" and real-world institutional accountability.
+**[View Official Federal Registry Details](https://ised-isde.canada.ca/cc/lgcy/fdrlCrpDtls.html?p=0&corpId=17632274&crpNm=addison&crpNmbr=&bsNmbr=&cProv=&cStatus=&cAct=)**
 
 ---
 
@@ -71,6 +89,6 @@ Addition is backed by a **legally registered Canadian Federal Entity**. We combi
 
 <p align="center">
   <br>
-  <b>Developed with precision. Secured for the future. This is Addition.</b><br>
+  <b>Developed with precision. Secured for the future. The last blockchain you will ever need.</b><br>
   <i>© 2026 Addition Network. The Final Financial Layer.</i>
 </p>
