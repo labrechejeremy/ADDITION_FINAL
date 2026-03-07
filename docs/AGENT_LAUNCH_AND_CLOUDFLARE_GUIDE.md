@@ -55,8 +55,11 @@ Open a new terminal after `setx`.
 
 ```powershell
 Set-Location "C:\Users\admin\Desktop\ADDITION_FINAL\web\portal"
+$env:ADDITION_RPC_TOKEN = [Environment]::GetEnvironmentVariable("ADDITION_RPC_TOKEN","User")
 python .\addition_portal_backend.py
 ```
+
+If daemon RPC token auth is enabled, backend must receive the same token through `ADDITION_RPC_TOKEN`.
 
 Default endpoint:
 - `http://127.0.0.1:8080`

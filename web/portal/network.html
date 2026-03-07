@@ -20,6 +20,7 @@
             <a href="./node.html">Node</a>
             <a href="./tokenomics.html">Tokenomics</a>
             <a href="./about.html">About</a>
+            <a href="./faq.html">FAQ</a>
             <a href="./chat/">Private Chat</a>
         </nav>
     </header>
@@ -43,9 +44,70 @@
             </div>
             <div class="raw-box" id="network-raw">No data</div>
         </section>
+
+        <section class="panel fade-up delay-1" id="mining-pool">
+            <h2>Pool de minage — comment faire</h2>
+            <p class="sub">Tu peux miner en solo ou créer/rejoindre un pool. Voici le flux recommandé pour un setup propre et rapide.</p>
+
+            <div class="feature-grid">
+                <article>
+                    <h3>1) Préparer le node</h3>
+                    <ul class="checklist">
+                        <li>Démarrer le node en mode mainnet.</li>
+                        <li>Vérifier que la hauteur de chaîne augmente.</li>
+                        <li>Activer RPC sécurisé (token RPC obligatoire).</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>2) Choisir le mode</h3>
+                    <ul class="checklist">
+                        <li><strong>Solo</strong> : toutes les rewards pour toi, variance plus élevée.</li>
+                        <li><strong>Pool privé</strong> : partage hashrate entre tes machines.</li>
+                        <li><strong>Pool public</strong> : payouts réguliers selon contribution.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>3) Connecter les mineurs</h3>
+                    <ul class="checklist">
+                        <li>Configurer l’adresse wallet de réception.</li>
+                        <li>Pointer les workers vers l’endpoint pool.</li>
+                        <li>Surveiller rejet shares, latence et uptime.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>4) Exploitation continue</h3>
+                    <ul class="checklist">
+                        <li>Mettre alertes sur hashrate et peers.</li>
+                        <li>Sauvegarder `data/` régulièrement.</li>
+                        <li>Garder les clés/tokens uniquement côté serveur.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="raw-box">
+                Conseils pool:\n
+                • Faible hashrate global → préférer pool pour lisser les rewards\n
+                • Hashrate élevé + infra stable → solo possible\n
+                • Toujours séparer wallet froid (trésorerie) et wallet chaud (opérations)
+            </div>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="./node.html">Configurer un node</a>
+                <a class="btn btn-secondary" href="./faq.html">Voir la FAQ</a>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer"><p>© 2026 ADDITION NETWORK — The Wallstreet Exchange</p></footer>
+    <footer class="footer">
+        <p>© 2026 ADDITION NETWORK — The Wallstreet Exchange</p>
+        <p>
+            <a href="./about.html">About</a> ·
+            <a href="./tokenomics.html">Tokenomics</a> ·
+            <a href="./security.html">Security</a> ·
+            <a href="./faq.html">FAQ</a> ·
+            <a href="./support.html">Support</a>
+        </p>
+    </footer>
     <script src="./js/app.js"></script>
 </body>
 </html>

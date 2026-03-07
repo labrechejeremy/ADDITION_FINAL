@@ -11,6 +11,7 @@ from urllib.parse import parse_qs, urlparse
 
 RPC_HOST = os.getenv("ADDITION_RPC_HOST", "127.0.0.1")
 RPC_PORT = int(os.getenv("ADDITION_RPC_PORT", "8545"))
+RPC_TOKEN = os.getenv("ADDITION_RPC_TOKEN", "").strip()
 HTTP_HOST = os.getenv("ADDITION_HTTP_HOST", "0.0.0.0")
 HTTP_PORT = int(os.getenv("ADDITION_HTTP_PORT", "8080"))
 STATIC_ROOT = Path(__file__).parent
@@ -20,6 +21,78 @@ RATE_LIMIT = {}
 BLOBS = {}
 PREKEYS = {}
 NONCE_SEEN = {}
+
+CHAIN_TOKEN_CATALOG = {
+    "ethereum": {
+        "label": "Ethereum",
+        "evm": True,
+        "chain_id_hex": "0x1",
+        "rpc_urls": ["https://rpc.ankr.com/eth"],
+        "native_currency": {"name": "Ether", "symbol": "ETH", "decimals": 18},
+        "block_explorer_urls": ["https://etherscan.io"],
+        "tokens": [
+            {"symbol": "ETH", "contract": ""},
+            {"symbol": "USDT", "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7"},
+            {"symbol": "USDC", "contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"},
+            {"symbol": "ADD", "contract": ""},
+        ],
+    },
+    "bsc": {
+        "label": "BNB Smart Chain",
+        "evm": True,
+        "chain_id_hex": "0x38",
+        "rpc_urls": ["https://bsc-dataseed.binance.org"],
+        "native_currency": {"name": "BNB", "symbol": "BNB", "decimals": 18},
+        "block_explorer_urls": ["https://bscscan.com"],
+        "tokens": [
+            {"symbol": "BNB", "contract": ""},
+            {"symbol": "USDT", "contract": "0x55d398326f99059fF775485246999027B3197955"},
+            {"symbol": "USDC", "contract": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"},
+            {"symbol": "ADD", "contract": ""},
+        ],
+    },
+    "polygon": {
+        "label": "Polygon",
+        "evm": True,
+        "chain_id_hex": "0x89",
+        "rpc_urls": ["https://polygon-rpc.com"],
+        "native_currency": {"name": "MATIC", "symbol": "MATIC", "decimals": 18},
+        "block_explorer_urls": ["https://polygonscan.com"],
+        "tokens": [
+            {"symbol": "MATIC", "contract": ""},
+            {"symbol": "USDT", "contract": "0xc2132D05D31c914a87C6611C10748AaCbC532C8E"},
+            {"symbol": "USDC", "contract": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"},
+            {"symbol": "ADD", "contract": ""},
+        ],
+    },
+    "avalanche": {
+        "label": "Avalanche C-Chain",
+        "evm": True,
+        "chain_id_hex": "0xa86a",
+        "rpc_urls": ["https://api.avax.network/ext/bc/C/rpc"],
+        "native_currency": {"name": "AVAX", "symbol": "AVAX", "decimals": 18},
+        "block_explorer_urls": ["https://snowtrace.io"],
+        "tokens": [
+            {"symbol": "AVAX", "contract": ""},
+            {"symbol": "USDT", "contract": "0x9702230A8Ea53601f5cD2dc00fDBc13d4Df4A8c7"},
+            {"symbol": "USDC", "contract": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"},
+            {"symbol": "ADD", "contract": ""},
+        ],
+    },
+    "addition": {
+        "label": "ADDITION Network",
+        "evm": False,
+        "chain_id_hex": "",
+        "rpc_urls": [],
+        "native_currency": {"name": "ADD", "symbol": "ADD", "decimals": 8},
+        "block_explorer_urls": [],
+        "tokens": [
+            {"symbol": "ADD", "contract": "native"},
+            {"symbol": "USDT", "contract": "bridge:USDT"},
+            {"symbol": "USDC", "contract": "bridge:USDC"},
+        ],
+    },
+}
 
 CHAT_MIN_STAKED_ADD = int(os.getenv("ADDITION_CHAT_MIN_STAKED_ADD", "1"))
 CHAT_SEND_FEE_STAKED_ADD = int(os.getenv("ADDITION_CHAT_SEND_FEE_STAKED_ADD", "1"))
@@ -32,7 +105,10 @@ NONCE_TTL_SEC = int(os.getenv("ADDITION_NONCE_TTL_SEC", "600"))
 def rpc_call(command: str, timeout: float = 4.0) -> str:
     try:
         with socket.create_connection((RPC_HOST, RPC_PORT), timeout=timeout) as s:
-            s.sendall((command.strip() + "\n").encode("utf-8"))
+            line = command.strip()
+            if RPC_TOKEN:
+                line = f"{RPC_TOKEN} {line}"
+            s.sendall((line + "\n").encode("utf-8"))
             s.settimeout(timeout)
             chunks = []
             while True:
@@ -145,6 +221,18 @@ def mark_sender_nonce(sender: str, nonce: str) -> bool:
 def sanitize_token(value: str) -> str:
     allowed = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-:/+=")
     return "".join(ch for ch in value if ch in allowed)
+
+def chain_exists(name: str) -> bool:
+    return name in CHAIN_TOKEN_CATALOG
+
+def token_exists(chain: str, symbol: str) -> bool:
+    rec = CHAIN_TOKEN_CATALOG.get(chain)
+    if not rec:
+        return False
+    for t in rec.get("tokens", []):
+        if str(t.get("symbol", "")).upper() == symbol.upper():
+            return True
+    return False
 
 def b64url_decode_nopad(data: str) -> bytes:
     s = data.replace("-", "+").replace("_", "/")
@@ -410,6 +498,55 @@ class PortalHandler(BaseHTTPRequestHandler):
             self._send_json(200, {"ok": not raw.startswith("error:"), "raw": raw, "data": parse_kv(raw)})
             return
 
+        if path == "/api/swap/route-crosschain":
+            chain_in = sanitize_token(str(body.get("chain_in", "")).lower())
+            chain_out = sanitize_token(str(body.get("chain_out", "")).lower())
+            token_in = sanitize_token(str(body.get("token_in", "")).upper())
+            token_out = sanitize_token(str(body.get("token_out", "")).upper())
+            amount_in = int(body.get("amount_in", 0) or 0)
+            if not chain_in or not chain_out or not token_in or not token_out or amount_in <= 0:
+                self._send_json(400, {"ok": False, "error": "invalid params"})
+                return
+            if not chain_exists(chain_in) or not chain_exists(chain_out):
+                self._send_json(400, {"ok": False, "error": "unsupported chain"})
+                return
+            if not token_exists(chain_in, token_in) or not token_exists(chain_out, token_out):
+                self._send_json(400, {"ok": False, "error": "unsupported token on selected chain"})
+                return
+
+            same_chain = chain_in == chain_out
+            if same_chain:
+                raw = rpc_call(f"swap_best_route {token_in} {token_out} {amount_in} 3")
+                self._send_json(200, {
+                    "ok": not raw.startswith("error:"),
+                    "mode": "same-chain",
+                    "raw": raw,
+                    "data": parse_kv(raw),
+                    "steps": ["best_route_quote", "wallet_sign", "onchain_execute"]
+                })
+                return
+
+            plan = {
+                "ok": True,
+                "mode": "cross-chain",
+                "chain_in": chain_in,
+                "chain_out": chain_out,
+                "token_in": token_in,
+                "token_out": token_out,
+                "amount_in": amount_in,
+                "steps": [
+                    "approve_source_token_if_required",
+                    "lock_or_burn_source",
+                    "bridge_attestation",
+                    "mint_or_release_destination",
+                    "execute_destination_swap_if_needed"
+                ],
+                "route_hint": f"{chain_in}->{chain_out}:{token_in}->{token_out}",
+                "warning": "plan preview only; execute using bridge + chain-specific signers"
+            }
+            self._send_json(200, plan)
+            return
+
         self._send_json(404, {"ok": False, "error": "not found"})
 
     def do_GET(self):
@@ -431,6 +568,8 @@ class PortalHandler(BaseHTTPRequestHandler):
         elif path == "/api/health":
             raw = rpc_call("getinfo")
             self._send_json(200, {"ok": not raw.startswith("error:") and bool(raw), "raw": raw})
+        elif path == "/api/swap/catalog":
+            self._send_json(200, {"ok": True, "catalog": CHAIN_TOKEN_CATALOG})
         elif path == "/api/stake_claimable":
             qs = parse_qs(parsed.query)
             addr = sanitize_token((qs.get("address", [""])[0]))
@@ -458,6 +597,12 @@ class PortalHandler(BaseHTTPRequestHandler):
             static_file_response(self, STATIC_ROOT / "about.html")
         elif path == "/tokenomics.html":
             static_file_response(self, STATIC_ROOT / "tokenomics.html")
+        elif path == "/security.html":
+            static_file_response(self, STATIC_ROOT / "security.html")
+        elif path == "/privacy-policy.html":
+            static_file_response(self, STATIC_ROOT / "privacy-policy.html")
+        elif path == "/support.html":
+            static_file_response(self, STATIC_ROOT / "support.html")
         elif path == "/":
             static_file_response(self, STATIC_ROOT / "index.html")
         else:

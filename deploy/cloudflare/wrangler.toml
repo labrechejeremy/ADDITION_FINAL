@@ -8,7 +8,7 @@ directory = "../../web/portal"
 binding = "ASSETS"
 
 [vars]
-PORTAL_API_BASE = "https://api.xa1.ai"
+PORTAL_API_BASE = "https://api.dogecointoday.com"
 
 [[routes]]
 pattern = "bitcoins.express/*"
